@@ -24,7 +24,7 @@ The example above shows us an instance where you reuse the function in the same 
 C++ allows the creation of *function prototypes* which gives the compiler just enough information to know how the function is used. Specifically, the function header that is composed of the *return type*, *function name*, and its *parameters*.
 
 ```cpp
-# Filename: algebra.hpp
+// Filename: algebra.hpp
 int cube(int number);
 ```
 
@@ -36,7 +36,7 @@ For this tutorial, we can create an `algebra` header to contain all algebraic fu
 Once we define our function prototype, we can start implementing them. The function implementation is no different than how we create functions.
 
 ```cpp
-# Filename: algebra.cpp
+// Filename: algebra.cpp
 int cube(int number) {
   return number * number * number;
 }
@@ -48,7 +48,7 @@ The only difference is that we organize them to make it easy to manage. Usually,
 At this point we're already done creating our functions. However, it doesn't really make sense unless you use them. Just like how we include our other header files using `#include` we do the same for our own header file, but use double quotes (" ") instead of angle brackets (< >). The double quotes tell the compiler to find the header file in the current folder where you invoke the compiler, while the angle brackets tells the compiler that the header file is in the compiler's system directory.
 
 ```cpp
-# Filename: driver.cpp
+// Filename: driver.cpp
 #include <iostream>
 #include "algebra.hpp"
 using namespace std;
