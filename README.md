@@ -67,7 +67,8 @@ If you notice, what changed from the first implementation is that we just includ
 g++ -std=c++17 algebra.cpp driver.cpp -o driver
 ```
 
-When the compiler compiles `driver.cpp` it will see the `#include "algebra.hpp"` directive and include the `cube` function prototype. This way, when `cube(5)` is called, it knows that `cube` is a function which receives a single integer parameter and returns an integer value.
+When the compiler compiles `driver.cpp` it will see the `#include "algebra.hpp"` 
+and include the `cube` function prototype. This way, when `cube(5)` is called, it knows that `cube` is a function which receives a single integer parameter and returns an integer value.
 
 The compiler also compiles `algebra.cpp` that contains `cube`'s implementation. During the linking step, it connects the function call in `main` to its corresponding implementation. You should be able to run your program as usual.
 
@@ -86,3 +87,18 @@ Why do we need to create separate header and implementation files? Can't we just
 In practice, all function prototypes are placed in the header file so that you can easily see the entire list of functions. Having a single function prototype, like cube, is easily manageable, but imagine having a project that contains hundreds of functions! Moreover, the header file is also where most developers provide the documentation. You help other developers reuse your headers by providing them the information they need to call your function and also some documentation if necessary. They don't really need to see the implementation; just what it does and how to use it.
 
 Naturally, the function implementations will be in a separate file because we separate them from the function prototypes. The advantage of this multi-file structure is that developers who want to know more about a function implementation can do so by reading the implementation file. You can also provide documentation about the inner workings of your function there. It is good coding practice to ensure that all function prototypes in the header file have their implementations in the implementation file and vice versa.
+
+# Additional reading
+## Include guards
+A common issue with using the `#include` directive is the possibility of including the same header twice. This potentially leads to a *redefinition error* that causes compilation to fail. Developers often use what is called an *include guard* to prevent adding header files twice.
+
+```cpp
+#ifndef ALGEBRA_HPP
+#define ALGEBRA_HPP
+
+int cube(int number);
+
+#endif
+```
+
+`#ifndef` and `#endif` are a pair of macros the work like `if` statements. Anything between the pair is implemented if a particular identifier is defined; in this case, `ALGEBRA_HPP`. If it has not been defined yet, the `#define` macro defines the identifier. If the `#include` is called more than once, it fails the condition because the identifier has already been defined previously. In effect, the statements inside the include guard are only performed once during compilation.
