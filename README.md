@@ -33,16 +33,18 @@ Related function prototypes are usually organized into what is called a *header 
 For this tutorial, we can create an `algebra` header to contain all algebraic functions that we can reuse whenever we need them. Let's save our header into the `algebra.hpp` file. Header files can have any file name, but we'll use the `.hpp` extension as our convention. Many projects use this convention, but other variations include `.h` or `.hh`.
 
 ## Function prototype implementation
-Once we define our function prototype, we can start implementing them. The function implementation is no different than how we create functions.
+Once we define our function prototype, we can start implementing them. We use the `#include` directive to connect our function prototype and it's implementation. In this case, we include `algebra.hpp` because it contains our function prototype for `cube`. Including the header file also ensures that the function implementation has access to all data used by the prototype. The function implementation is no different than how we create functions.
 
 ```cpp
 // Filename: algebra.cpp
+#include "algebra.hpp"
+
 int cube(int number) {
   return number * number * number;
 }
 ```
 
-The only difference is that we organize them to make it easy to manage. Usually, there is an implementation file associated to each header file. We can create a file called `algebra.cpp` that contains all implementations of the function prototypes defined in `algebra.hpp`. We want to use the same name so that they are easy to distinguish especially when you have projects that use multiple header and implementation files.
+The only difference in using this multi-file structure is that we organize them for better management. Usually, there is an implementation file associated to each header file. We can create a file called `algebra.cpp` that contains all implementations of the function prototypes defined in `algebra.hpp`. We want to use the same name so that they are easy to distinguish especially when you have projects that use multiple header and implementation files.
 
 ## Integrating functions to projects
 At this point we're already done creating our functions. However, it doesn't really make sense unless you use them. Just like how we include our other header files using `#include` we do the same for our own header file, but use double quotes (" ") instead of angle brackets (< >). The double quotes tell the compiler to find the header file in the current folder where you invoke the compiler, while the angle brackets tells the compiler that the header file is in the compiler's system directory.
@@ -61,7 +63,7 @@ int main() {
 }
 ```
 
-If you notice, what changed from the first implementation is that we just included `algebra.h` instead of having the cube function in the same file. So how will the compiler know about `cube`'s implementation? The magic happens during compilation. Aside from compiling `driver.cpp`, we also compile the implementation file, `algebra.cpp`.
+If you notice, what changed from the first implementation is that we just included `algebra.hpp` instead of having the cube function in the same file. So how will the compiler know about `cube`'s implementation? The magic happens during compilation. Aside from compiling `driver.cpp`, we also compile the implementation file, `algebra.cpp`.
 
 ```
 g++ -std=c++17 algebra.cpp driver.cpp -o driver
@@ -75,6 +77,8 @@ The compiler also compiles `algebra.cpp` that contains `cube`'s implementation. 
 ```
 ./driver
 ```
+
+For organization, we name our executable file `driver` because the file containing the `main` function is `driver.cpp`
 
 ## Reusing headers
 If you happen to create another project that requires functions you already created then its as easy as just copying the header and implementation files then adding the appropriate `#include` directive.
