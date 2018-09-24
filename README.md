@@ -97,6 +97,7 @@ Naturally, the function implementations will be in a separate file because we se
 A common issue with using the `#include` directive is the possibility of including the same header twice. This potentially leads to a *redefinition error* that causes compilation to fail. Developers often use what is called an *include guard* to prevent adding header files twice.
 
 ```cpp
+// Filename: algebra.hpp
 #ifndef ALGEBRA_HPP
 #define ALGEBRA_HPP
 
