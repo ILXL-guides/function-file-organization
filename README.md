@@ -3,16 +3,15 @@ Functions help you organize code by designing each one to perform a particular t
 
 ```cpp
 #include <iostream>
-using namespace std;
 
 int cube(int number) {
   return number * number * number;
 }
 
 int main() {
-  cout << "The cube of 5 is " << cube(5) << endl;
-  cout << "The cube of 3 is " << cube(3) << endl;
-  cout << "The cube of 9 is " << cube(9) << endl;
+  std::cout << "The cube of 5 is " << cube(5) << "\n";
+  std::cout << "The cube of 3 is " << cube(3) << "\n";
+  std::cout << "The cube of 9 is " << cube(9) << "\n";
   return 0;
 }
 ```
@@ -53,12 +52,11 @@ At this point we're already done creating our functions. However, it doesn't rea
 // Filename: driver.cpp
 #include <iostream>
 #include "algebra.hpp"
-using namespace std;
 
 int main() {
-  cout << "The cube of 5 is " << cube(5) << endl;
-  cout << "The cube of 3 is " << cube(3) << endl;
-  cout << "The cube of 9 is " << cube(9) << endl;
+  std::cout << "The cube of 5 is " << cube(5) << "\n";
+  std::cout << "The cube of 3 is " << cube(3) << "\n";
+  std::cout << "The cube of 9 is " << cube(9) << "\n";
   return 0;
 }
 ```
@@ -66,7 +64,7 @@ int main() {
 If you notice, what changed from the first implementation is that we just included `algebra.hpp` instead of having the cube function in the same file. So how will the compiler know about `cube`'s implementation? The magic happens during compilation. Aside from compiling `driver.cpp`, we also compile the implementation file, `algebra.cpp`.
 
 ```
-g++ -std=c++17 algebra.cpp driver.cpp -o driver
+clang++ -std=c++17 algebra.cpp driver.cpp -o driver
 ```
 
 When the compiler compiles `driver.cpp` it will see the `#include "algebra.hpp"` 
