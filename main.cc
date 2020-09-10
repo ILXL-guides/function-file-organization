@@ -1,5 +1,5 @@
 #include <iostream>
-#include "algebra.hpp"
+#include "algebra.h"
 
 int main() {
   std::cout << "The cube of 5 is " << cube(5) << "\n";
