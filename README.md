@@ -104,4 +104,4 @@ int cube(int number);
 #endif
 ```
 
-`#ifndef` and `#endif` are a pair of macros the work like `if` statements. Anything between the pair is implemented if a particular identifier is defined; in this case, `ALGEBRA_HPP`. If it has not been defined yet, the `#define` macro defines the identifier. If the `#include` is called more than once, it fails the condition because the identifier has already been defined previously. In effect, the statements inside the include guard are only performed once during compilation.
+`#ifndef` and `#endif` are a pair of macros the work like `if` statements. Anything between the pair is implemented if a particular identifier is defined; in this case, `ALGEBRA_H`. The name can be any identifier, but is usually the name of the file using upper case and using an underscore (`_`) in place of the period. If it has not been defined yet, the `#define` macro defines the identifier. If the `#include` is called more than once, it fails the condition because the identifier has already been defined previously. In effect, the statements inside the include guard are only performed once during compilation.
