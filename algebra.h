@@ -1,5 +1,5 @@
 // This library provides commonly used algebraic functions.
 
-int cube(int number);
+int Cube(int number);
 
-int square(int number);
+int Square(int number);
