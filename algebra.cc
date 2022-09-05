@@ -2,10 +2,10 @@
 // in algebra.hpp
 #include "algebra.h"
 
-int cube(int number) {
+int Cube(int number) {
   return number * number * number;
 }
 
-int square(int number) {
+int Square(int number) {
   return number * number;
 }
